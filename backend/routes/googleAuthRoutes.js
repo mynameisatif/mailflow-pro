@@ -18,7 +18,7 @@ router.get(
   })
 );
 
-// Callback
+// Google Callback
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -30,7 +30,7 @@ router.get(
   }
 );
 
-// Current user
+// Current User
 router.get("/me", getCurrentUser);
 
 // Logout
