@@ -11,37 +11,32 @@ export default function EmailInput({ emails, setEmails }) {
 
     if (!cleanEmail) return;
 
-    if (!emailRegex.test(cleanEmail)) return;
+    if (!emailRegex.test(cleanEmail)) {
+      console.log("Invalid:", cleanEmail);
+      return;
+    }
 
     if (emails.includes(cleanEmail)) return;
 
     setEmails((prev) => [...prev, cleanEmail]);
   };
 
-  const processInput = (text) => {
-    const parts = text.split(/[\s,;\n\r\t]+/);
-
-    if (parts.length > 1) {
-      parts.slice(0, -1).forEach(addEmail);
-      setInput(parts[parts.length - 1]);
-    } else {
-      setInput(text);
-    }
-  };
-
-  const handleChange = (e) => {
-    processInput(e.target.value);
-  };
-
   const handleKeyDown = (e) => {
-    if (["Enter", "Tab", ","].includes(e.key)) {
+    // Space, Enter, Comma or Tab
+    if (
+      e.key === " " ||
+      e.key === "Enter" ||
+      e.key === "Tab" ||
+      e.key === ","
+    ) {
       e.preventDefault();
 
       addEmail(input);
       setInput("");
+      return;
     }
 
-    if (e.key === "Backspace" && input === "" && emails.length > 0) {
+    if (e.key === "Backspace" && input === "" && emails.length) {
       setEmails((prev) => prev.slice(0, -1));
     }
   };
@@ -49,19 +44,16 @@ export default function EmailInput({ emails, setEmails }) {
   const handlePaste = (e) => {
     e.preventDefault();
 
-    const pastedText = e.clipboardData.getData("text");
+    const pasted = e.clipboardData.getData("text");
 
-    const pastedEmails = pastedText
+    const list = pasted
       .split(/[\s,;\n\r\t]+/)
-      .map((email) => email.trim())
-      .filter((email) => emailRegex.test(email));
+      .map((e) => e.trim())
+      .filter((e) => emailRegex.test(e));
 
-    const uniqueEmails = pastedEmails.filter(
-      (email) => !emails.includes(email)
-    );
+    const unique = list.filter((e) => !emails.includes(e));
 
-    setEmails((prev) => [...prev, ...uniqueEmails]);
-    setInput("");
+    setEmails((prev) => [...prev, ...unique]);
   };
 
   const removeEmail = (email) => {
@@ -69,14 +61,14 @@ export default function EmailInput({ emails, setEmails }) {
   };
 
   return (
-    <div className="border border-gray-300 rounded-lg p-3 flex flex-wrap gap-2 min-h-[60px] focus-within:ring-2 focus-within:ring-blue-500">
+    <div className="border border-gray-300 rounded-lg p-3 flex flex-wrap gap-2 min-h-[60px]">
 
       {emails.map((email) => (
         <div
           key={email}
           className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2"
         >
-          <span>{email}</span>
+          {email}
 
           <button
             type="button"
@@ -91,7 +83,7 @@ export default function EmailInput({ emails, setEmails }) {
       <input
         type="text"
         value={input}
-        onChange={handleChange}
+        onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
         onPaste={handlePaste}
         placeholder="Enter email addresses..."
