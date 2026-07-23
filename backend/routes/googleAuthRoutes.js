@@ -4,7 +4,7 @@ import { getCurrentUser } from "../controllers/authController.js";
 
 const router = express.Router();
 
-// Login with Google
+// Google Login
 router.get(
   "/google",
   passport.authenticate("google", {
@@ -18,7 +18,7 @@ router.get(
   })
 );
 
-// Google Callback
+// Callback
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -26,13 +26,24 @@ router.get(
     session: true,
   }),
   (req, res) => {
-    console.log("User Logged In");
-    console.log(req.user.profile.emails[0].value);
-
-    res.redirect("http://localhost:5173");
+    res.redirect("https://mynameisatif.github.io/mailflow-pro/");
   }
 );
 
+// Current user
 router.get("/me", getCurrentUser);
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    req.session.destroy(() => {
+      res.redirect("https://mynameisatif.github.io/mailflow-pro/");
+    });
+  });
+});
 
 export default router;

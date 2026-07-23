@@ -33,12 +33,4 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-router.get("/logout", (req, res) => {
-  req.logout(() => {
-    req.session.destroy(() => {
-      res.redirect("https://mynameisatif.github.io/mailflow-pro/");
-    });
-  });
-});
-
 export default passport;
