@@ -68,27 +68,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl">
-              <div className="rounded-[24px] bg-gradient-to-br from-white to-blue-50 p-6 text-slate-900">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Inbox</p>
-                    <h2 className="mt-2 text-2xl font-semibold">Ready to send</h2>
-                  </div>
-                  <div className="rounded-2xl bg-blue-600/10 p-3 text-blue-600">✉️</div>
-                </div>
-                <div className="mt-6 space-y-3">
-                  <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <p className="text-sm text-slate-500">Recipients</p>
-                    <p className="mt-1 font-semibold text-slate-900">24 contacts</p>
-                  </div>
-                  <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <p className="text-sm text-slate-500">Status</p>
-                    <p className="mt-1 font-semibold text-emerald-600">Authenticated with Google</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </Layout>
