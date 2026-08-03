@@ -1,0 +1,278 @@
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 6 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 6 0 R >> >> /Contents 7 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 6 0 R >> >> /Contents 8 0 R >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+7 0 obj
+<< /Length 2226 >>
+stream
+BT
+/F1 12 Tf
+72 720 Td
+(# MailFlow Pro) Tj
+T*
+() Tj
+T*
+(MailFlow Pro is a premium Gmail-powered email sending web app with Google OAuth) Tj
+T*
+(authentication and a modern SaaS-style UI. The frontend is built with React, Vite, and) Tj
+T*
+(Tailwind CSS, while the backend uses Express, Passport Google OAuth, and Gmail APIs for) Tj
+T*
+(email sending.) Tj
+T*
+() Tj
+T*
+(## What was done) Tj
+T*
+() Tj
+T*
+(- Redesigned the existing app into a modern, premium SaaS-style UI.) Tj
+T*
+(- Implemented a landing page with a branded hero, Google login button, and responsive) Tj
+T*
+(layout.) Tj
+T*
+(- Ensured frontend API requests use the deployed backend URL:) Tj
+T*
+(`https://mailflow-api-w8kx.onrender.com`.) Tj
+T*
+(- Added `withCredentials: true` for secure session-based authentication.) Tj
+T*
+(- Built automatic auth detection and dashboard rendering for logged-in users.) Tj
+T*
+(- Preserved the existing backend email-sending functionality.) Tj
+T*
+(- Removed unused frontend starter files and organized components clearly.) Tj
+T*
+(- Verified production build and GitHub Pages deployment.) Tj
+T*
+() Tj
+T*
+(## Features) Tj
+T*
+() Tj
+T*
+(- Google OAuth login flow via Render backend.) Tj
+T*
+(- Authenticated dashboard showing user profile photo, name, and Gmail address.) Tj
+T*
+(- Modern email composer with recipient chips and multi-email paste support.) Tj
+T*
+(- Responsive mobile-first design with glassmorphism, soft shadows, and smooth spacing.) Tj
+T*
+(- Production-ready GitHub Pages frontend deployment.) Tj
+T*
+() Tj
+T*
+(## Project structure) Tj
+T*
+() Tj
+T*
+(- `backend/`: Express API, Google auth, email sending controller.) Tj
+T*
+(- `frontend/`: React app, landing page, dashboard, email composer, deployment config.) Tj
+T*
+() Tj
+T*
+(## Technologies used) Tj
+T*
+() Tj
+T*
+(- Frontend: React, Vite, Tailwind CSS, Axios, GitHub Pages.) Tj
+T*
+(- Backend: Node.js, Express, Passport Google OAuth, express-session, CORS.) Tj
+T*
+(- Deployment: GitHub Pages for frontend, Render for backend.) Tj
+T*
+() Tj
+T*
+(## Local setup) Tj
+T*
+() Tj
+T*
+(1. Clone the repository:) Tj
+T*
+(   ```bash) Tj
+T*
+(   git clone https://github.com/mynameisatif/mailflow-pro.git) Tj
+T*
+(   cd mailflow-pro) Tj
+T*
+(   ```) Tj
+T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Length 1613 >>
+stream
+BT
+/F1 12 Tf
+72 720 Td
+() Tj
+T*
+(2. Setup backend:) Tj
+T*
+(   ```bash) Tj
+T*
+(   cd backend) Tj
+T*
+(   npm install) Tj
+T*
+(   ```) Tj
+T*
+() Tj
+T*
+(3. Create a `.env` file in `backend/` with:) Tj
+T*
+(   ```env) Tj
+T*
+(   GOOGLE_CLIENT_ID=your_google_client_id) Tj
+T*
+(   GOOGLE_CLIENT_SECRET=your_google_client_secret) Tj
+T*
+(   GOOGLE_CALLBACK_URL=https://mailflow-api-w8kx.onrender.com/auth/google/callback) Tj
+T*
+(   SESSION_SECRET=some_secure_secret) Tj
+T*
+(   ```) Tj
+T*
+() Tj
+T*
+(4. Start the backend:) Tj
+T*
+(   ```bash) Tj
+T*
+(   npm run dev) Tj
+T*
+(   ```) Tj
+T*
+() Tj
+T*
+(5. Setup frontend:) Tj
+T*
+(   ```bash) Tj
+T*
+(   cd ../frontend) Tj
+T*
+(   npm install) Tj
+T*
+(   npm run dev) Tj
+T*
+(   ```) Tj
+T*
+() Tj
+T*
+(6. Open the app in the browser at `http://localhost:5173`.) Tj
+T*
+() Tj
+T*
+(## Deployment) Tj
+T*
+() Tj
+T*
+(- Frontend is configured for GitHub Pages using `homepage` and `vite.base`.) Tj
+T*
+(- Deploy frontend from `frontend/` with:) Tj
+T*
+(  ```bash) Tj
+T*
+(  npm run deploy) Tj
+T*
+(  ```) Tj
+T*
+(- Backend should be deployed to Render with CORS and session support enabled.) Tj
+T*
+(- Live frontend URL: `https://mynameisatif.github.io/mailflow-pro/`) Tj
+T*
+(- API base URL: `https://mailflow-api-w8kx.onrender.com`) Tj
+T*
+() Tj
+T*
+(## How it runs) Tj
+T*
+() Tj
+T*
+(1. User visits the landing page.) Tj
+T*
+(2. If not authenticated, the app shows the login hero and a Google login button.) Tj
+T*
+(3. Clicking the button redirects to the backend `/auth/google` route.) Tj
+T*
+(4. Upon successful login, the backend redirects back to the frontend.) Tj
+T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Length 913 >>
+stream
+BT
+/F1 12 Tf
+72 720 Td
+(5. The frontend calls `/auth/me` to detect the authenticated user.) Tj
+T*
+(6. If authenticated, the dashboard and email form are displayed.) Tj
+T*
+(7. The user composes an email, and the app sends it to the backend via `/api/send-email`.) Tj
+T*
+(8. The backend uses the authenticated user session to send Gmail messages.) Tj
+T*
+() Tj
+T*
+(## Notes for interview) Tj
+T*
+() Tj
+T*
+(- I maintained functionality while upgrading the UI, focusing on both appearance and) Tj
+T*
+(usability.) Tj
+T*
+(- The login flow was made reliable for GitHub Pages by hardcoding the Render API endpoint) Tj
+T*
+(and using `withCredentials`.) Tj
+T*
+(- I simplified the app structure by removing unused starter files and using a centralized) Tj
+T*
+(API utility.) Tj
+T*
+(- I also added auth session handling and CORS improvements in the backend to support) Tj
+T*
+(deployed frontend requests.) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000000 00000 n 
+0000000049 00000 n 
+0000000118 00000 n 
+0000000244 00000 n 
+0000000370 00000 n 
+0000000496 00000 n 
+0000000566 00000 n 
+0000002843 00000 n 
+0000004507 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+5470
+%%EOF
