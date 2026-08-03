@@ -13,6 +13,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.set("trust proxy", 1);
+
 // CORS
 // CORS
 app.use(
@@ -23,6 +25,8 @@ app.use(
       "https://mynameisatif.github.io/mailflow-pro",
     ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -32,12 +36,13 @@ app.use(express.json());
 // Session
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "mailflow-session-secret",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // true only if using HTTPS
+      secure: process.env.NODE_ENV === "production",
       httpOnly: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 24 * 60 * 60 * 1000,
     },
   })
