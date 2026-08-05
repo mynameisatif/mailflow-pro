@@ -2,7 +2,7 @@ import { useState } from "react";
 import EmailInput from "./EmailInput";
 import api from "../services/api";
 
-export default function EmailForm() {
+export default function EmailForm({ guest = false }) {
   const [emails, setEmails] = useState([]);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -33,6 +33,7 @@ export default function EmailForm() {
         emails,
         subject,
         message,
+        guest,
       });
 
       if (response.data?.success) {
@@ -62,6 +63,11 @@ export default function EmailForm() {
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Composer</p>
           <h3 className="text-2xl font-semibold text-slate-900">Send a polished message</h3>
+          {guest ? (
+            <p className="mt-2 text-sm text-blue-700">
+              Guest mode enabled — your email address will not be used.
+            </p>
+          ) : null}
         </div>
         <div className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
           {emails.length} recipient{emails.length === 1 ? "" : "s"}
@@ -110,7 +116,7 @@ export default function EmailForm() {
           disabled={loading}
           className={`w-full rounded-2xl px-4 py-3.5 font-semibold text-white transition ${loading ? "cursor-not-allowed bg-slate-400" : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"}`}
         >
-          {loading ? "Sending messages..." : "Send emails"}
+          {loading ? "Sending messages..." : guest ? "Send as guest" : "Send emails"}
         </button>
       </div>
     </form>

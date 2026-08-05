@@ -6,6 +6,7 @@ import EmailForm from "../components/EmailForm";
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [guestMode, setGuestMode] = useState(false);
 
   useEffect(() => {
     api
@@ -37,6 +38,31 @@ export default function Home() {
     );
   }
 
+  if (guestMode) {
+    return (
+      <Layout>
+        <div className="mb-6 rounded-[28px] border border-slate-200/80 bg-white/80 p-6 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-xl font-semibold text-slate-900">Guest mode enabled</h2>
+              <p className="mt-2 text-sm text-slate-500">
+                You can send emails immediately without signing in. Your personal Gmail address will not be used. A random sender address will be used instead.
+              </p>
+            </div>
+            <button
+              onClick={() => setGuestMode(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+            >
+              Back to login options
+            </button>
+          </div>
+        </div>
+
+        <EmailForm guest />
+      </Layout>
+    );
+  }
+
   if (!user) {
     return (
       <Layout>
@@ -45,13 +71,16 @@ export default function Home() {
           <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="max-w-2xl">
               <div className="mb-5 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-blue-100 backdrop-blur">
-                ✦ Premium email automation for modern teams
+                ✦ Choose how you want to send email
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 MailFlow Pro
               </h1>
               <p className="mt-5 text-lg leading-8 text-slate-300 sm:text-xl">
-                Send polished email campaigns and personal messages directly from your Gmail account with a secure, elegant experience.
+                Send polished messages with your Gmail address, or try the app instantly as a guest.
+              </p>
+              <p className="mt-4 rounded-3xl border border-white/20 bg-white/10 px-5 py-4 text-sm text-slate-200 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
+                By logging in with Google, emails are sent from your Gmail address. As a guest, a random sender address will be used so your email is not required.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
@@ -62,9 +91,12 @@ export default function Home() {
                 >
                   Continue with Google
                 </button>
-                <div className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-medium text-slate-200 backdrop-blur">
-                  Secure • Fast • Gmail-powered
-                </div>
+                <button
+                  onClick={() => setGuestMode(true)}
+                  className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-slate-50/90 px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-100"
+                >
+                  Use as guest
+                </button>
               </div>
             </div>
           </div>
