@@ -71,17 +71,24 @@ export default function Home() {
           <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="max-w-2xl">
               <div className="mb-5 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-blue-100 backdrop-blur">
-                ✦ Choose how you want to send email
+                ✦ Two easy ways to start
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 MailFlow Pro
               </h1>
               <p className="mt-5 text-lg leading-8 text-slate-300 sm:text-xl">
-                Send polished messages with your Gmail address, or try the app instantly as a guest.
+                Choose the option that fits you best.
               </p>
-              <p className="mt-4 rounded-3xl border border-white/20 bg-white/10 px-5 py-4 text-sm text-slate-200 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
-                By logging in with Google, emails are sent from your Gmail address. As a guest, a random sender address will be used so your email is not required.
-              </p>
+              <div className="mt-6 space-y-3">
+                <div className="rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-sm text-slate-200 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
+                  <div className="font-semibold text-white">Login with Google</div>
+                  <p className="mt-1">By login with Google you can send mail using your email address.</p>
+                </div>
+                <div className="rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-sm text-slate-200 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
+                  <div className="font-semibold text-white">Login as guest</div>
+                  <p className="mt-1">Otherwise random mail will be used to send mail.</p>
+                </div>
+              </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={() => {
@@ -95,7 +102,7 @@ export default function Home() {
                   onClick={() => setGuestMode(true)}
                   className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-slate-50/90 px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-100"
                 >
-                  Use as guest
+                  Login as guest
                 </button>
               </div>
             </div>
